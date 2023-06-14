@@ -12,8 +12,8 @@ describe Multiples do
 
     context 'when start number is greater than end number' do
       let(:start_number) {20}
-      it 'raises InvalidNumbersError' do
-        expect{ run }.to raise_error(Multiples::InvalidNumbersError)
+      it 'raises ArgumentError' do
+        expect{ run }.to raise_error(ArgumentError, described_class::ARG_ERROR_MESSAGE)
       end
     end
   end

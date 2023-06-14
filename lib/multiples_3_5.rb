@@ -3,10 +3,10 @@
 # Find the sum of all the multiples of 3 or 5 below 1000.
 
 class Multiples
-  class InvalidNumbersError < StandardError; end
+  ARG_ERROR_MESSAGE = "The start number is greater than the end number"
 
   def self.run(start_number, end_number)
-    raise InvalidNumbersError if start_number > end_number
+    raise ArgumentError.new(ARG_ERROR_MESSAGE) if start_number > end_number
 
     (start_number...end_number).filter_map { |n| n if multiple_of_three_or_five?(n) }.sum
     # (1...n).each_with_object([]) do |number, array|
