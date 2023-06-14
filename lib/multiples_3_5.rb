@@ -5,7 +5,7 @@
 class Multiples
   ARG_ERROR_MESSAGE = "The start number is greater than the end number"
 
-  def self.run(start_number, end_number)
+  def self.run(end_number, start_number: 0)
     raise ArgumentError.new(ARG_ERROR_MESSAGE) if start_number > end_number
 
     (start_number...end_number).filter_map { |n| n if multiple_of_three_or_five?(n) }.sum
