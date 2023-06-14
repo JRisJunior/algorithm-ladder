@@ -3,13 +3,23 @@
 # Find the sum of all the multiples of 3 or 5 below 1000.
 
 class Multiples
-  def self.run(n)
-    to_sum = []
-    (1...n).each_with_object(to_sum) do |number, array|
-      if number % 3 == 0 || number % 5 == 0
-        array << number
-      end
-    end
-    to_sum.sum
+  class InvalidNumbersError < StandardError; end
+
+  def self.run(start_number, end_number)
+    raise InvalidNumbersError if start_number > end_number
+
+    (start_number...end_number).filter_map { |n| n if multiple_of_three_or_five?(n) }.sum
+    # (1...n).each_with_object([]) do |number, array|
+    #   if number % 3 == 0 || number % 5 == 0
+    #     array << number
+    #   end
+    # end.sum
   end
+
+  def self.multiple_of_three_or_five?(number)
+    number % 3 == 0 || number % 5 == 0
+  end
+
+  private_class_method :multiple_of_three_or_five?
+
 end
